@@ -22,7 +22,9 @@ byte rgbArray[3];
 long prevColor;
 int prevOnOff;
 
-String apiKey = hueAPIkey; 
+String apiKey = HUEAPIKEY; 
+String hubIP = HUEHUBIP;
+String lightId  = HUELIGHTID;
 
 
 void setup() {
@@ -37,7 +39,7 @@ void setup() {
   pinMode(A0, INPUT);
   pinMode(switchPin,INPUT_PULLUP);
 
-  WiFi.begin(SSID, password);   //WiFi connection
+  WiFi.begin(SSID, PASSWORD);   //WiFi connection
    while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
     
     delay(500);
@@ -52,8 +54,8 @@ void setLight(long hueArray[3],bool turnOff= 0) {
     
     HTTPClient http;    //Declare object of class HTTPClient
 
-    // lamp 11 tafel, lamp 12 jongenskamer, lamp 13 slaapkamert
-    http.begin("http://192.168.0.131/api/"+apiKey+"/lights/12/state");      //Specify request destination
+    
+    http.begin("http://"+hubIP+"/api/"+apiKey+"/lights/"+lightId+"/state");      //Specify request destination
     http.addHeader("Content-Type", "application/json");  //Specify content-type header
 
     char body[100];
