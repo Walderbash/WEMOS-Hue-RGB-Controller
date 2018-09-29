@@ -141,8 +141,8 @@ void loop() {
 */  
 
   int onOff = digitalRead(switchPin);
-  //Serial.print("Switch: ");
-  //Serial.println(onOff);
+  Serial.print("Switch: ");
+  Serial.println(onOff);
 
   long nowColor = rgbArray[0]+rgbArray[1]+rgbArray[2];
 
